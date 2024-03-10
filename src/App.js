@@ -1,7 +1,7 @@
 import "./App.css";
 import styled, { ThemeProvider } from "styled-components";
 import { darkTheme } from "./util/themes";
-import { Navbar, Hero, Skills, Education } from "./components/exports";
+import { Navbar, Hero, Skills, Projects, Contact } from "./components/exports";
 import { BrowserRouter as Router } from "react-router-dom";
 
 const Body = styled.div`
@@ -13,6 +13,7 @@ const Body = styled.div`
 
 const Wrapper = styled.div`
     width: 100%;
+    height: 100%;
     clip-path: polygon(0 0, 100% 0, 100% 100%, 30% 98%, 0 100%);
     background: linear-gradient(
     38,73deg,
@@ -34,7 +35,10 @@ function App() {
         <Hero/>
         <Wrapper>
           <Skills/>
-          <Education/>
+        </Wrapper>
+        <Projects/>
+        <Wrapper>
+          <Contact/>
         </Wrapper>
       </Body>
       </Router>

@@ -7,17 +7,19 @@ import HeroImg from '../assets/img/me.jpeg'
 const HeroContainer = styled.div`
   background: ${({ theme }) => theme.card_light};
   display: flex;
-  height: 100vh;
+  height: 40rem;
   justify-content: center;
   padding: 80px 30px;
   position: relative;
   z-index: 1;
   @media screen and (max-width: 960px) {
     padding: 60px 10px;
+    height: 60rem;
   }
 
   @media screen and (max-width: 640px ) {
     padding: 32px 16px;
+    height: 64rem;
   }
 
   clip-path: polygon(0 0, 100% 0, 100% 100%, 70% 98%, 0 100%);
@@ -210,7 +212,7 @@ export default function Hero() {
               </Span>
             </InfinitText>
             <SubTitle>{Bio.description}</SubTitle>
-            <ResumeButton href={Bio.resume} target="_blank" rel="noreferrer">Resume</ResumeButton>
+            <ResumeButton href={Bio.resume} target="_blank">Resume</ResumeButton>
           </HeroLeft>
           <HeroRight>
             <Image src={HeroImg} alt="My profile"/>
