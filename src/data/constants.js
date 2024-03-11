@@ -98,6 +98,10 @@ export const Bio = {
           name: "Firebase",
           image: "https://www.vectorlogo.zone/logos/firebase/firebase-icon.svg",
         },
+        {
+          name: "SQL Server",
+          image: "https://www.snaresolutions.com/wp-content/uploads/Snare_Central-Log-Management_Website-Images_Database-Activity-Monitoring-1030x900.png",
+        },
         // {
         //   name: "Postgresql",
         //   image: "https://www.postgresql.org/media/img/about/press/elephant.png",
@@ -187,7 +191,7 @@ export const Bio = {
       description:
       "School Administration Platform for managing missions for teachers in order to get reimbursements.",
       image:
-      "imgs/ProfMission.jpg",
+      "imgs/ProfMission.png",
       tags: [
         "ASP.Net Core MVC",
         "C#",

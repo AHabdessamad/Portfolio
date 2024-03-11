@@ -166,7 +166,7 @@ export default function Contact() {
           from_name: form.name,
           to_name: "ABDESSAMAD AH",
           from_email: form.email,
-          to_email: "abdessamadaithamo@gmail.com",
+          to_email: "abdessamadaithamou0@gmail.com",
           message: form.message,
         },
         'gJe0G7MZZvRxVdIvj'
