@@ -3,7 +3,7 @@ export const Bio = {
     LastName: "AIT HAMOU",
     roles: [
       "Full Stack Developer",
-      "Android Developer",
+      "Mobile Developer",
       "Programmer",
     ],
     description:
@@ -193,7 +193,7 @@ export const Bio = {
         "C#",
         "EF",
         "SQL Server (SSMS)",
-        "WKHTML",
+        "JQuery",
       ],
       type: "web",
       github: "https://github.com/AHabdessamad/Brain-Tumor-Detection",

@@ -92,6 +92,7 @@ const CardContainer = styled.div`
     justify-content: center;
     align-items: center;
     gap: 20px;
+    cursor: pointer;
 `;
 
 // Project Card Style

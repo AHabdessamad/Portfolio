@@ -2,8 +2,10 @@ import React from 'react'
 import { useState, useEffect } from 'react'
 // import { NavLink } from 'react-router-dom'
 import styled, { useTheme } from 'styled-components'
-import {Link as LinkR} from 'react-router-dom'
+import {Link, Link as LinkR} from 'react-router-dom'
 import { FaBars } from 'react-icons/fa'
+import { Bio } from '../data/constants'
+import { ToastContainer } from 'react-toastify';
 
 const Nav = styled.nav`
     background-color: ${({ theme }) => theme.card_light};
@@ -14,7 +16,8 @@ const Nav = styled.nav`
     font-size: 1.2rem;
     position: sticky;
     top: 0;
-    z-index: 10;
+    z-index: 1;
+    // display: none;
     @media screen and (max-width: 960px) {
         transition: 0.8s all ease;
     
@@ -54,6 +57,7 @@ const NavItems = styled.div`
     @media screen and (max-width: 948px) {
         display: none;
     }
+   
 `;
 
 
@@ -79,7 +83,7 @@ const NavLink = styled(LinkR)`
     cursor: pointer;
     text-decoration: none;
     transition:all 0.3s ease-in-out;
-    &.active {
+    &:hover{
         color: ${({ theme }) => theme.primary};
     }
 `;
@@ -96,18 +100,19 @@ const ButtonContainer = styled.div`
     }
 `;
 
-const GithubButton = styled.button`
+const GithubButton = styled.a`
     border: 1.8px solid ${({ theme }) => theme.primary};
     background-color: transparent;
     color: ${({ theme }) => theme.text_primary};
     border-radius: 20px;
     justify-content: center;
     align-items: center;
-    padding: 0px 20px;
+    padding:8px 20px;
+    list-style: none;
     font-size: 1rem;
     cursor: pointer;
     display: flex;
-    height: 70%;
+    height: 100%;
     font-weight: 500;
     :hover{
         background-color: ${({ theme }) => theme.primary};
@@ -151,6 +156,9 @@ const MobileLink = styled(LinkR)`
     }
 
 `;
+const linkStyle = {
+    textDecoration: 'none',
+}
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
@@ -158,7 +166,7 @@ export default function Navbar() {
   const changeMenu = () => {
     setOpen(!open);
   }
-
+  
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth > 948 && open) {
@@ -172,6 +180,7 @@ export default function Navbar() {
 
   return (
     <Nav>
+     <ToastContainer />
       <NavContainer>
         <NavLogo to="/">Abdessamad | AH</NavLogo>
         <MobileIcon>
@@ -180,12 +189,12 @@ export default function Navbar() {
         <NavItems>
             <NavLink to="#skills">Skills</NavLink>
             <NavLink to="#projects">Projects</NavLink>
-            <NavLink to="#education">Education</NavLink>
+            {/* <NavLink to="#education">Education</NavLink> */}
             <NavLink to="#posts">Posts</NavLink>
             <NavLink to="#contact">Contact</NavLink>
         </NavItems>
         <ButtonContainer>
-        <GithubButton>Github profile</GithubButton>
+        <Link style={linkStyle}  to={Bio.github} target='_blank'><GithubButton>Github profile</GithubButton></Link>
         </ButtonContainer>
       </NavContainer>
       {
@@ -206,14 +215,13 @@ export default function Navbar() {
             <MobileLink to="#contact" onClick={()=>{setOpen(!open)}}>
                 Contact
             </MobileLink>
-            <GithubButton style={{
+            <Link style={linkStyle} to={Bio.github} target='_blank'><GithubButton style={{
                 padding: '10px 16px',
                 // background: `${theme.primary}`,
                 color: 'white',
                 width: 'max-content',
             }}
-            to="/"
-            >Github profile</GithubButton>
+            >Github profile</GithubButton></Link>
         </MobileMenu>)
       }
     </Nav>

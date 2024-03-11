@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import {Bio} from '../data/constants'
 import Typewriter from "typewriter-effect"
 import HeroImg from '../assets/img/me.jpeg'
-
+import { Link } from 'react-router-dom'
 const HeroContainer = styled.div`
   background: ${({ theme }) => theme.card_light};
   display: flex;
@@ -212,7 +212,7 @@ export default function Hero() {
               </Span>
             </InfinitText>
             <SubTitle>{Bio.description}</SubTitle>
-            <ResumeButton href={Bio.resume} target="_blank">Resume</ResumeButton>
+            <Link style={{textDecoration: 'none'}} to={Bio.resume} target="_blank"><ResumeButton>Resume</ResumeButton></Link>
           </HeroLeft>
           <HeroRight>
             <Image src={HeroImg} alt="My profile"/>
