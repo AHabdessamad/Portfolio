@@ -170,8 +170,8 @@ const CardDate = styled.div`
 export default function Projects() {
   const [toggle, setToggle] = useState('All')
   return (
-    <div id="projects">
-       <ContainerProjects>
+    <section >
+       <ContainerProjects id="projects">
         {/* <Wrapper> */}
        <SkillTitle>Projects</SkillTitle>
             <Description>
@@ -233,6 +233,6 @@ export default function Projects() {
              {/* </Wrapper>  */}
        </ContainerProjects>
       
-    </div>
+    </section>
   )
 }

@@ -143,6 +143,10 @@ const MobileMenu = styled.div`
     border-radius: 0 0 20px 20px;
     opacity: ${({ open }) => (open ? '1' : '0')};
     z-index: ${({ open }) => (open ? '1' : '-1')};
+
+    @media screen and (max-width: 640px ) {
+        z-index: 5;
+      }
 `;
 
 const MobileLink = styled(LinkR)`
@@ -187,11 +191,11 @@ export default function Navbar() {
             <FaBars onClick={changeMenu} />
         </MobileIcon>
         <NavItems>
-            <NavLink to="#skills">Skills</NavLink>
-            <NavLink to="#projects">Projects</NavLink>
+            <NavLink to="/skills">Skills</NavLink>
+            <NavLink to="/projects">Projects</NavLink>
             {/* <NavLink to="#education">Education</NavLink> */}
-            <NavLink to="#posts">Posts</NavLink>
-            <NavLink to="#contact">Contact</NavLink>
+            <NavLink to="/posts">Posts</NavLink>
+            <NavLink to="/contact">Contact</NavLink>
         </NavItems>
         <ButtonContainer>
         <Link style={linkStyle}  to={Bio.github} target='_blank'><GithubButton>Github profile</GithubButton></Link>
@@ -200,18 +204,18 @@ export default function Navbar() {
       {
         open && ( 
         <MobileMenu open={open}>
-            <MobileLink to="#about" onClick={()=>{setOpen(!open)}}>
-                About
-            </MobileLink>
             <MobileLink to="#skills" onClick={()=>{setOpen(!open)}}>
                 Skills
             </MobileLink>
             <MobileLink to="#projects" onClick={()=>{setOpen(!open)}}>
                 Projects
             </MobileLink>
-            <MobileLink to="#education" onClick={()=>{setOpen(!open)}}>
-                Education
+            <MobileLink to="#posts" onClick={()=>{setOpen(!open)}}>
+                Posts
             </MobileLink>
+            {/* <MobileLink to="#education" onClick={()=>{setOpen(!open)}}>
+                Education
+            </MobileLink> */}
             <MobileLink to="#contact" onClick={()=>{setOpen(!open)}}>
                 Contact
             </MobileLink>

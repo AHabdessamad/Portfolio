@@ -11,7 +11,6 @@ const HeroContainer = styled.div`
   justify-content: center;
   padding: 80px 30px;
   position: relative;
-  z-index: 1;
   @media screen and (max-width: 960px) {
     padding: 60px 10px;
     height: 60rem;
