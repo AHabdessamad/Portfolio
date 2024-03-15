@@ -2,7 +2,21 @@ import React from 'react'
 import styled from 'styled-components'
 import {skills} from '../data/constants'
 import { Title } from '@mui/icons-material'
+import { Fade } from "react-awesome-reveal";
 
+const ContainerWrapper = styled.div`
+    width: 100%;
+    height: 100%;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 30% 98%, 0 100%);
+    background: linear-gradient(
+    38,73deg,
+    rgba(204, 0, 187, 0.15) 0%, rgba(201, 32, 184, 0) 50%
+    ),
+    linear-gradient(
+    141.27deg, 
+    rgba(0, 70, 209, 0.15) 100%, rgba(0, 70, 209, 0.15) 100%
+    );
+`;
 
 const SkillsContainer = styled.div`
     display: flex;
@@ -117,15 +131,17 @@ const SkillImage = styled.img`
 
 export default function Skills() {
   return (
-    <div id="skills">
-       <SkillsContainer>
+   <ContainerWrapper id="skills">
+       <SkillsContainer >
           <Wrapper>
+            <Fade direction='up' triggerOnce>
             <SkillTitle>Skills</SkillTitle>
             <Description>
               Here are some of the technologies I've worked with for the past 2 years.
             </Description>
+            </Fade>
             <SkillsWrapper>
-
+            <Fade direction='up' triggerOnce>
               {skills.map((obj) => (
                 <Skill >
                   <Skilltitle>{obj.title}</Skilltitle>
@@ -140,10 +156,10 @@ export default function Skills() {
                    </SkillList>
                 </Skill>
               ))}
-
+            </Fade>
             </SkillsWrapper>
           </Wrapper>
        </SkillsContainer>
-    </div>
+    </ContainerWrapper>
   )
 }

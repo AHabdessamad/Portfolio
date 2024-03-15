@@ -6,6 +6,7 @@ import emailjs from '@emailjs/browser';
 import {  toast, Toast, ToastContainer } from "react-toastify";
 // import { Toast } from 'react-toastify/dist/components';
 import "react-toastify/dist/ReactToastify.css";
+import { Fade } from 'react-awesome-reveal';
 
 const ContactContainer = styled.div`
     display: flex;
@@ -210,12 +211,15 @@ export default function Contact() {
 
 
   return (
-    <div id="contact" >
-       <ContactContainer>
+       <ContactContainer >
+              <Fade direction='up' triggerOnce >
               <ContactTitle>Contact</ContactTitle>
-              <Description>
+              <Description id="contact" >
                 I'm currently looking for new opportunities, use the form below to get in touch with me.
               </Description>
+              </Fade>
+
+              <Fade direction='up' triggerOnce>
               <Form
               ref={formRef}
               onSubmit={handleSubmit}
@@ -255,8 +259,8 @@ export default function Contact() {
                 { loading ? "Sending..." : "Send"}
               </SubmitButton>
         </Form>
+        </Fade>
         </ContactContainer>
-      
-    </div>
+
   );
 }

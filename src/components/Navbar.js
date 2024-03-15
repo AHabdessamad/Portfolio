@@ -7,6 +7,7 @@ import { FaBars } from 'react-icons/fa'
 import { Bio } from '../data/constants'
 import { ToastContainer } from 'react-toastify';
 
+
 const Nav = styled.nav`
     background-color: ${({ theme }) => theme.card_light};
     height: 80px;
@@ -77,7 +78,7 @@ const NavLogo = styled(LinkR)`
     }
 `;
 
-const NavLink = styled(LinkR)`
+const NavLink = styled.a`
     color: ${({ theme }) => theme.text_primary};
     font-weight: 500;
     cursor: pointer;
@@ -182,6 +183,7 @@ export default function Navbar() {
 
   }, [open]);
 
+
   return (
     <Nav>
      <ToastContainer />
@@ -191,11 +193,11 @@ export default function Navbar() {
             <FaBars onClick={changeMenu} />
         </MobileIcon>
         <NavItems>
-            <NavLink to="/skills">Skills</NavLink>
-            <NavLink to="/projects">Projects</NavLink>
+            <NavLink href="#skills" >Skills</NavLink>
+            <NavLink href="#projects">Projects</NavLink>
             {/* <NavLink to="#education">Education</NavLink> */}
-            <NavLink to="/posts">Posts</NavLink>
-            <NavLink to="/contact">Contact</NavLink>
+            <NavLink href="#posts">Posts</NavLink>
+            <NavLink href="#contact">Contact</NavLink>
         </NavItems>
         <ButtonContainer>
         <Link style={linkStyle}  to={Bio.github} target='_blank'><GithubButton>Github profile</GithubButton></Link>

@@ -4,6 +4,9 @@ import {Bio} from '../data/constants'
 import Typewriter from "typewriter-effect"
 import HeroImg from '../assets/img/me.jpeg'
 import { Link } from 'react-router-dom'
+import { Fade } from "react-awesome-reveal";
+
+
 const HeroContainer = styled.div`
   background: ${({ theme }) => theme.card_light};
   display: flex;
@@ -195,27 +198,35 @@ export default function Hero() {
         <HeroBg/>
         <HeroInnerContainer>
           <HeroLeft>
+            <Fade direction="down" triggerOnce>
             <Title>Hi, I am <br/>
             {Bio.FirstName}<br/>
             {Bio.LastName}</Title>
-            <InfinitText>
-              I am a 
-              <Span> 
-              <Typewriter
-                options={{
-                  strings: Bio.roles,
-                  autoStart: true,
-                  loop: true,
-                }}
-              />
-              </Span>
-            </InfinitText>
+              <InfinitText>
+                I am a 
+                <Span> 
+                <Typewriter
+                  options={{
+                    strings: Bio.roles,
+                    autoStart: true,
+                    loop: true,
+                  }}
+                />
+                </Span>
+              </InfinitText>
+            </Fade>
+            <Fade triggerOnce>
             <SubTitle>{Bio.description}</SubTitle>
+            </Fade>
+            <Fade direction='up' triggerOnce>
             <Link style={{textDecoration: 'none'}} to={Bio.resume} target="_blank"><ResumeButton>Resume</ResumeButton></Link>
+            </Fade>
           </HeroLeft>
           <HeroRight>
+            <Fade direction='right' triggerOnce>
             <Image src={HeroImg} alt="My profile"/>
-              </HeroRight>
+            </Fade>
+          </HeroRight>
         </HeroInnerContainer>
       </HeroContainer>
     </div>

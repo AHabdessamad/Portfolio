@@ -2,6 +2,9 @@ import React from 'react'
 import styled from 'styled-components'
 import { useState } from 'react'
 import {projects} from '../data/constants'
+import { Link as LinkR, Link } from 'react-router-dom';
+import { Fade } from 'react-awesome-reveal';
+
 
 const ContainerProjects = styled.div`
   display: flex;
@@ -88,6 +91,7 @@ const CardContainer = styled.div`
     height: 100%;
     display: flex;
     flex-wrap: wrap;
+    padding: 20px;
     wrap: wrap;
     justify-content: center;
     align-items: center;
@@ -167,16 +171,21 @@ const CardDate = styled.div`
     color: ${({ theme }) => theme.text_secondary};
 `;
 
+const GithubLink = styled(LinkR)`
+    font-size: 1rem;
+    color: ${({ theme }) => theme.text_secondary};
+`;
 export default function Projects() {
   const [toggle, setToggle] = useState('All')
   return (
-    <section >
-       <ContainerProjects id="projects">
+       <ContainerProjects  id="projects">
         {/* <Wrapper> */}
-       <SkillTitle>Projects</SkillTitle>
-            <Description>
-              Here are some of my projects that I've worked on.
-            </Description>
+         <Fade direction='up' triggerOnce>
+             <SkillTitle>Projects</SkillTitle>
+              <Description>
+                Here are some of my projects that I've worked on.
+              </Description>
+       
             <ToogleGroupe>
               {toggle === 'All' ? (
                 <ToogleButton active onClick={ () => setToggle('All')} value="All">All</ToogleButton>
@@ -198,11 +207,13 @@ export default function Projects() {
               }
   
             </ToogleGroupe>
-
+            </Fade>
               <CardContainer>
                 
                 {toggle === 'All' ? projects.map((project) => {
-                  return(<Card key={project.id}>
+                  return(
+                    <Fade direction='up' triggerOnce>
+                        <Card key={project.id}>
                         <CardImage src={project.image} />
                         <CardTitle>{project.title}</CardTitle>
                         <CardDate>{project.date}</CardDate> 
@@ -212,7 +223,8 @@ export default function Projects() {
                           })}
                         </Techs> 
                         <CardDescription>{project.description}</CardDescription>
-                    </Card>)
+                    </Card>
+                    </Fade>)
                  })
                   : ( projects.filter((project) => project.type === toggle).map((project) => {
                     return(<Card key={project.id}> 
@@ -224,15 +236,14 @@ export default function Projects() {
                            </Techs> 
                            <CardTitle>{project.title}</CardTitle> 
                            <CardDescription>{project.description}</CardDescription> 
+                           <Link  to={project.github}><GithubLink>Github -></GithubLink></Link>
                      </Card>
                     )                 
                    }))
                  } 
-              
+             
               </CardContainer>
              {/* </Wrapper>  */}
-       </ContainerProjects>
-      
-    </section>
+       </ContainerProjects> 
   )
 }

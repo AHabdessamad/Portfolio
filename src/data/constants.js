@@ -223,17 +223,16 @@ export const Bio = {
   {
     id: 4,
     title: "Restfull API",
-    date: "Nov 2023 - Dec 2023",
+    date: "Sep 2023 - Nov 2023",
     description:
-      "School Administration Platform for managing missions for teachers in order to get reimbursements.",
+      "Build a REST API using Stateless communication via NodeJs, ExpressJs, and MongoDB, tested using Postman.",
     image:
       "imgs/RESTapi.png",
     tags: [
-      "ASP.Net Core MVC",
-      "C#",
-      "EF",
-      "SQL Server (SSMS)",
-      "WKHTML",
+      "NodeJs",
+      "ExpressJs",
+      "MongoDB",
+      "Postman",
     ],
     type: "web",
     github: "https://github.com/AHabdessamad/Brain-Tumor-Detection",
