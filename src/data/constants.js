@@ -10,7 +10,7 @@ export const Bio = {
       "As a dedicated software engineering student at the National School of Applied Science Safi , I have gained experience working on various projects, both individually and as a part of a team. I am committed to staying abreast of the latest trends in software engineering. I am ready to make a meaningful contribution and achieve great things.",
     github: "https://github.com/AHabdessamad",
     resume:
-      "https://drive.google.com/file/d/1NjWInWgAwTe57kf_4eVqDCXK2m0sz-P3/view?usp=drive_link",
+      "https://drive.google.com/file/d/1NjWInWgAwTe57kf_4eVqDCXK2m0sz-P3/view",
     linkedin: "www.linkedin.com/in/abdessamad-ait-hamou-3b36a9211",
     twitter: "https://twitter.com/Ait7Abdessamad",
     insta: "https://www.instagram.com/ah_abdessamad/",
