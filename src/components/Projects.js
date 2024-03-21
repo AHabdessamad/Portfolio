@@ -4,6 +4,8 @@ import { useState } from 'react'
 import {projects} from '../data/constants'
 import { Link as LinkR, Link } from 'react-router-dom';
 import { Fade } from 'react-awesome-reveal';
+import { FaGithub } from 'react-icons/fa';
+import { hover } from '@testing-library/user-event/dist/hover';
 
 
 const ContainerProjects = styled.div`
@@ -126,6 +128,7 @@ const CardImage = styled.img`
     border-radius: 10px;
     oject-fit: cover;
     background-color: ${({ theme }) => theme.white};
+    position: relative;
 `;
 
 const Techs = styled.div`
@@ -175,6 +178,16 @@ const GithubLink = styled(LinkR)`
     font-size: 1rem;
     color: ${({ theme }) => theme.text_secondary};
 `;
+
+const icon = {
+  color: '#b1b2b3',
+  width: '35px',
+  height: '35px',
+  position: 'absolute',
+  right: '40px',
+  top: '235px',
+}
+
 export default function Projects() {
   const [toggle, setToggle] = useState('All')
   return (
@@ -215,6 +228,7 @@ export default function Projects() {
                     <Fade direction='up' triggerOnce>
                         <Card key={project.id}>
                         <CardImage src={project.image} />
+                        <Link to={project.github} target="_blank"><FaGithub style={icon}/></Link>
                         <CardTitle>{project.title}</CardTitle>
                         <CardDate>{project.date}</CardDate> 
                         <Techs>
@@ -229,14 +243,15 @@ export default function Projects() {
                   : ( projects.filter((project) => project.type === toggle).map((project) => {
                     return(<Card key={project.id}> 
                             <CardImage src={project.image} alt={project.title}/> 
+                            <Link to={project.github} target="_blank"><FaGithub style={icon}/></Link>
+                            <CardTitle>{project.title}</CardTitle> 
+                            <CardDate>{project.date}</CardDate> 
                             <Techs> 
                               {project.tags.map((tag) => { 
                                 return(<Tech key={tag}>{tag}</Tech>)
                              })}
                            </Techs> 
-                           <CardTitle>{project.title}</CardTitle> 
                            <CardDescription>{project.description}</CardDescription> 
-                           <Link  to={project.github}><GithubLink>Github -></GithubLink></Link>
                      </Card>
                     )                 
                    }))
