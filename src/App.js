@@ -37,9 +37,9 @@ function App() {
           <Skills/>
         </Wrapper>
         <Projects/>
-        <Wrapper>
+        {/* //<Wrapper> */}
           <Contact/>
-        </Wrapper>
+        {/* //</Wrapper> */}
           <Footer/>
       </Body>
       </Router>

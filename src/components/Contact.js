@@ -16,7 +16,7 @@ const ContactContainer = styled.div`
     z-index: 1;
     align-items: center;
     height: 70rem;
-    padding-bottom: 3rem;
+    padding-bottom: 1rem;
 `;
 const Wrapper = styled.div`
   max-width: 1100px;

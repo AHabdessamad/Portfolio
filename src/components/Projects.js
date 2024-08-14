@@ -13,17 +13,23 @@ const ContainerProjects = styled.div`
   flex-direction: column;
   justify-content: center;
   position: relative;
+  //padding: 0rem 8rem;
   align-items: center;
   margin-bottom: 6rem;
   height: 40rem;
   // padding-bottom: 24rem;
   
-  @media screen and (max-width: 1040px ) {
-    height: 76rem;
-  }
+  // @media screen and (max-width: 1040px ) {
+  //   height: 76rem;
+  // }
 
-  @media (max-width: 698px) {
-    height: 140rem;
+  @media (max-width: 1220px) {
+    height: 74rem;
+    padding: 0 2rem;
+  }
+  @media (max-width: 882px) {
+    height: 140rem; //anyTime i added a project i need to increase this 
+    padding: 0 2rem;
   }
   `;
 const Description = styled.div`
@@ -93,7 +99,7 @@ const CardContainer = styled.div`
     height: 100%;
     display: flex;
     flex-wrap: wrap;
-    padding: 20px;
+    padding: 4rem;
     wrap: wrap;
     justify-content: center;
     align-items: center;

@@ -14,6 +14,8 @@ html{
   /* scrollbar-color: "#854CE6" "#1C1C27" ; */
   scrollbar-color: #52348b #191924;
   scrollbar-width: thin;
+  padding:0;
+  margin:0;
 }
 
 body{
