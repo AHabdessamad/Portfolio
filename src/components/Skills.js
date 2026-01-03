@@ -1,7 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
 import {skills} from '../data/constants'
-import { Title } from '@mui/icons-material'
 import { Fade } from "react-awesome-reveal";
 
 const ContainerWrapper = styled.div`

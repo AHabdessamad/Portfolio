@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
 // import { NavLink } from 'react-router-dom'
-import styled, { useTheme } from 'styled-components'
+import styled from 'styled-components'
 import {Link, Link as LinkR} from 'react-router-dom'
 import { FaBars } from 'react-icons/fa'
 import { Bio } from '../data/constants'

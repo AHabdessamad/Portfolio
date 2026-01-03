@@ -5,7 +5,6 @@ import {projects} from '../data/constants'
 import { Link as LinkR, Link } from 'react-router-dom';
 import { Fade } from 'react-awesome-reveal';
 import { FaGithub } from 'react-icons/fa';
-import { hover } from '@testing-library/user-event/dist/hover';
 
 
 const ContainerProjects = styled.div`
@@ -177,11 +176,6 @@ const CardTitle = styled.div`
 `;
 const CardDate = styled.div`
     font-size: 0.8rem;
-    color: ${({ theme }) => theme.text_secondary};
-`;
-
-const GithubLink = styled(LinkR)`
-    font-size: 1rem;
     color: ${({ theme }) => theme.text_secondary};
 `;
 

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { useState, useRef } from 'react'
 import emailjs from '@emailjs/browser';
 // import dotenv from 'dotenv';
-import {  toast, Toast, ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 // import { Toast } from 'react-toastify/dist/components';
 import "react-toastify/dist/ReactToastify.css";
 import { Fade } from 'react-awesome-reveal';
@@ -17,16 +17,6 @@ const ContactContainer = styled.div`
     align-items: center;
     height: 70rem;
     padding-bottom: 1rem;
-`;
-const Wrapper = styled.div`
-  max-width: 1100px;
-  position: relative;
-  display: flex;
-  justify-content: space-between;
-  flex-direction: column;
-  width: 100%;
-  gap: 14px;
-
 `;
 
 const ContactTitle = styled.div`
@@ -115,9 +105,6 @@ const SubmitButton = styled.button`
       color: ${({ theme }) => theme.text_light};
   }
 
-`;
-const CustomToast = styled.div`
-  margin-top: 3rem; 
 `;
 export default function Contact() {
 
