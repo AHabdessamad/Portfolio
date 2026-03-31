@@ -13,10 +13,14 @@ const ContactContainer = styled.div`
     flex-direction: column;
     justify-content: center;
     position: relative;
-    z-index: 1;
+    z-index: 0;
     align-items: center;
-    height: 70rem;
-    padding-bottom: 1rem;
+    padding: 2rem 2rem 12rem;
+    width: 100%;
+
+    @media (max-width: 768px) {
+      padding: 4rem 1.5rem 6rem;
+    }
 `;
 
 const ContactTitle = styled.div`
@@ -44,12 +48,14 @@ const Description = styled.div`
 // Form style
 const Form = styled.form`
   width: 400px;
-  height: 2rem;
   margin-top: 4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
   @media (max-width: 568px) {
-    width: 300px;
+    width: 100%;
+    max-width: 320px;
   }
-
 `;
 const  Label = styled.label`
      display: flex;
@@ -106,6 +112,90 @@ const SubmitButton = styled.button`
   }
 
 `;
+
+// Success Modal Styled Components
+const ModalOverlay = styled.div`
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  animation: fadeIn 0.3s ease;
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+`;
+
+const ModalCard = styled.div`
+  background: ${({ theme }) => theme.card};
+  border: 1px solid rgba(133, 76, 230, 0.3);
+  border-radius: 20px;
+  padding: 48px 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  max-width: 420px;
+  width: 90%;
+  box-shadow: 0 20px 60px rgba(133, 76, 230, 0.2);
+  animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  @keyframes popIn {
+    from { transform: scale(0.7); opacity: 0; }
+    to   { transform: scale(1);   opacity: 1; }
+  }
+`;
+
+const CheckCircle = styled.div`
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #854CE6, #a855f7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  color: white;
+  box-shadow: 0 0 0 12px rgba(133, 76, 230, 0.15);
+  animation: pulseMd 1.5s ease-in-out infinite;
+  @keyframes pulseMd {
+    0%, 100% { box-shadow: 0 0 0 12px rgba(133, 76, 230, 0.15); }
+    50%       { box-shadow: 0 0 0 20px rgba(133, 76, 230, 0.05); }
+  }
+`;
+
+const ModalTitle = styled.h3`
+  color: ${({ theme }) => theme.text_primary};
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0;
+  text-align: center;
+`;
+
+const ModalMessage = styled.p`
+  color: ${({ theme }) => theme.text_secondary};
+  font-size: 1rem;
+  text-align: center;
+  margin: 0;
+  line-height: 1.6;
+`;
+
+const ModalButton = styled.button`
+  margin-top: 8px;
+  padding: 10px 36px;
+  border-radius: 20px;
+  border: 1.8px solid ${({ theme }) => theme.primary};
+  background: linear-gradient(90deg, rgba(133, 76, 230, 0.2), rgba(133, 76, 230, 0.05));
+  color: ${({ theme }) => theme.text_primary};
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  &:hover {
+    background: ${({ theme }) => theme.primary};
+    color: white;
+  }
+`;
 export default function Contact() {
 
   const [form, setForm] = useState({
@@ -113,6 +203,8 @@ export default function Contact() {
     email: "",
     message: "",
   });
+  const [sent, setSent] = useState(false);
+
 
   const [loading, setLoading] = useState(false);
   const formRef = useRef();
@@ -146,37 +238,23 @@ export default function Contact() {
 
     setLoading(true);
 
-    emailjs
-      .send(
-        'service_bo8p7oe',
-        'template_2ejhjr3',
+    emailjs.send(
+        process.env.REACT_APP_EMAILJS_SERVICE_ID,
+        process.env.REACT_APP_EMAILJS_TEMPLATE_ID,
         {
           from_name: form.name,
           to_name: "ABDESSAMAD AH",
           from_email: form.email,
-          to_email: "abdessamadaithamou0@gmail.com",
+          to_email: process.env.REACT_APP_EMAIL_ACCOUNT,
           message: form.message,
         },
-        'gJe0G7MZZvRxVdIvj'
+        process.env.REACT_APP_EMAILJS_PUBLIC_KEY
       )
       .then(
         () => {
           setLoading(false);
-          toast.success('Thank you. I will get back to you soon.', {
-            position: "top-center",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            });
-
-          setForm({
-            name: "",
-            email: "",
-            message: "",
-          });
+          setSent(true);
+          setForm({ name: "", email: "", message: "" });
         },
         (error) => {
           setLoading(false);
@@ -198,10 +276,24 @@ export default function Contact() {
 
 
   return (
-       <ContactContainer >
+    <>
+      {sent && (
+        <ModalOverlay onClick={() => setSent(false)}>
+          <ModalCard onClick={e => e.stopPropagation()}>
+            <CheckCircle>✓</CheckCircle>
+            <ModalTitle>Message Sent!</ModalTitle>
+            <ModalMessage>
+              Thank you for reaching out! I'll get back to you as soon as possible.
+            </ModalMessage>
+            <ModalButton onClick={() => setSent(false)}>Awesome, thanks!</ModalButton>
+          </ModalCard>
+        </ModalOverlay>
+      )}
+       <ContactContainer id="contact">
+
               <Fade direction='up' triggerOnce >
               <ContactTitle>Contact</ContactTitle>
-              <Description id="contact" >
+              <Description>
                 I'm currently looking for new opportunities, use the form below to get in touch with me.
               </Description>
               </Fade>
@@ -248,6 +340,6 @@ export default function Contact() {
         </Form>
         </Fade>
         </ContactContainer>
-
+    </>
   );
 }

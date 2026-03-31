@@ -1,7 +1,7 @@
 import "./App.css";
 import styled, { ThemeProvider } from "styled-components";
 import { darkTheme } from "./util/themes";
-import { Navbar, Hero, Skills, Projects, Contact, Footer } from "./components/exports";
+import { Navbar, Hero, Skills, Projects, Certifications, Footer } from "./components/exports";
 import { BrowserRouter as Router } from "react-router-dom";
 
 const Body = styled.div`
@@ -38,7 +38,7 @@ function App() {
         </Wrapper>
         <Projects/>
         {/* //<Wrapper> */}
-          <Contact/>
+        <Certifications/>
         {/* //</Wrapper> */}
           <Footer/>
       </Body>

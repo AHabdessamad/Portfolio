@@ -2,11 +2,11 @@ import React from 'react'
 import styled from 'styled-components'
 import {skills} from '../data/constants'
 import { Fade } from "react-awesome-reveal";
+import Experience from './Experience';
 
 const ContainerWrapper = styled.div`
     width: 100%;
     height: 100%;
-    clip-path: polygon(0 0, 100% 0, 100% 100%, 30% 98%, 0 100%);
     background: linear-gradient(
     38,73deg,
     rgba(204, 0, 187, 0.15) 0%, rgba(201, 32, 184, 0) 50%
@@ -15,6 +15,7 @@ const ContainerWrapper = styled.div`
     141.27deg, 
     rgba(0, 70, 209, 0.15) 100%, rgba(0, 70, 209, 0.15) 100%
     );
+    overflow: visible;
 `;
 
 const SkillsContainer = styled.div`
@@ -24,9 +25,9 @@ const SkillsContainer = styled.div`
     position: relative;
     z-index: 1;
     align-items: center;
-    margin-bottom: 6rem;
+    margin-bottom: 0;
     height: 120%;
-    padding-bottom: 28px;
+    padding-bottom: 8px;
 `;
 
 const Wrapper = styled.div`
@@ -130,8 +131,8 @@ const SkillImage = styled.img`
 
 export default function Skills() {
   return (
-   <ContainerWrapper id="skills">
-       <SkillsContainer >
+   <ContainerWrapper>
+       <SkillsContainer id="skills">
           <Wrapper>
             <Fade direction='up' triggerOnce>
             <SkillTitle>Skills</SkillTitle>
@@ -159,6 +160,7 @@ export default function Skills() {
             </SkillsWrapper>
           </Wrapper>
        </SkillsContainer>
+       <Experience />
     </ContainerWrapper>
   )
 }

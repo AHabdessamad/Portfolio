@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import {Bio} from '../data/constants'
 import Typewriter from "typewriter-effect"
-import HeroImg from '../assets/img/me.jpeg'
+import HeroImg from '../assets/img/profile.png'
 import { Link } from 'react-router-dom'
 import { Fade } from "react-awesome-reveal";
 

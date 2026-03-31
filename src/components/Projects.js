@@ -4,7 +4,8 @@ import { useState } from 'react'
 import {projects} from '../data/constants'
 import { Link as LinkR, Link } from 'react-router-dom';
 import { Fade } from 'react-awesome-reveal';
-import { FaGithub } from 'react-icons/fa';
+import { FaGithub, FaGlobe } from 'react-icons/fa';
+
 
 
 const ContainerProjects = styled.div`
@@ -12,25 +13,15 @@ const ContainerProjects = styled.div`
   flex-direction: column;
   justify-content: center;
   position: relative;
-  //padding: 0rem 8rem;
   align-items: center;
-  margin-bottom: 6rem;
-  height: 40rem;
-  // padding-bottom: 24rem;
-  
-  // @media screen and (max-width: 1040px ) {
-  //   height: 76rem;
-  // }
+  padding: 2rem 2rem 2rem;
+  width: 100%;
 
-  @media (max-width: 1220px) {
-    height: 74rem;
-    padding: 0 2rem;
+  @media (max-width: 768px) {
+    padding: 0 1rem 4rem;
   }
-  @media (max-width: 882px) {
-    height: 140rem; //anyTime i added a project i need to increase this 
-    padding: 0 2rem;
-  }
-  `;
+`;
+
 const Description = styled.div`
    font-size: 1.3rem;
    color: ${({ theme }) => theme.text_secondary};
@@ -228,7 +219,10 @@ export default function Projects() {
                     <Fade direction='up' triggerOnce>
                         <Card key={project.id}>
                         <CardImage src={project.image} />
-                        <Link to={project.github} target="_blank"><FaGithub style={icon}/></Link>
+                        {project.website
+                          ? <a href={project.website} target="_blank" rel="noopener noreferrer"><FaGlobe style={icon}/></a>
+                          : <Link to={project.github} target="_blank"><FaGithub style={icon}/></Link>
+                        }
                         <CardTitle>{project.title}</CardTitle>
                         <CardDate>{project.date}</CardDate> 
                         <Techs>
@@ -243,7 +237,10 @@ export default function Projects() {
                   : ( projects.filter((project) => project.type === toggle).map((project) => {
                     return(<Card key={project.id}> 
                             <CardImage src={project.image} alt={project.title}/> 
-                            <Link to={project.github} target="_blank"><FaGithub style={icon}/></Link>
+                            {project.website
+                              ? <a href={project.website} target="_blank" rel="noopener noreferrer"><FaGlobe style={icon}/></a>
+                              : <Link to={project.github} target="_blank"><FaGithub style={icon}/></Link>
+                            }
                             <CardTitle>{project.title}</CardTitle> 
                             <CardDate>{project.date}</CardDate> 
                             <Techs> 

@@ -17,7 +17,7 @@ const Nav = styled.nav`
     font-size: 1.2rem;
     position: sticky;
     top: 0;
-    z-index: 1;
+    z-index: 10;
     // display: none;
     @media screen and (max-width: 960px) {
         transition: 0.8s all ease;
@@ -79,12 +79,12 @@ const NavLogo = styled(LinkR)`
 `;
 
 const NavLink = styled.a`
-    color: ${({ theme }) => theme.text_primary};
+    color: ${({ active, theme }) => (active ? theme.primary : theme.text_primary)};
     font-weight: 500;
     cursor: pointer;
     text-decoration: none;
-    transition:all 0.3s ease-in-out;
-    &:hover{
+    transition: all 0.3s ease-in-out;
+    &:hover {
         color: ${({ theme }) => theme.primary};
     }
 `;
@@ -150,16 +150,15 @@ const MobileMenu = styled.div`
       }
 `;
 
-const MobileLink = styled(LinkR)`
-    color: ${({ theme }) => theme.text_primary};
+const MobileLink = styled.a`
+    color: ${({ active, theme }) => (active ? theme.primary : theme.text_primary)};
     font-weight: 500;
     cursor: pointer;
     text-decoration: none;
-    transition:all 0.3s ease-in-out;
-    &:hover{
+    transition: all 0.3s ease-in-out;
+    &:hover {
         color: ${({ theme }) => theme.primary};
     }
-
 `;
 const linkStyle = {
     textDecoration: 'none',
@@ -167,6 +166,7 @@ const linkStyle = {
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState('about');
   
   const changeMenu = () => {
     setOpen(!open);
@@ -176,12 +176,43 @@ export default function Navbar() {
     const handleResize = () => {
       if (window.innerWidth > 948 && open) {
         setOpen(false);
-        console.log('closed');
       }
     };
     window.addEventListener('resize', handleResize);
-
+    return () => window.removeEventListener('resize', handleResize);
   }, [open]);
+
+  useEffect(() => {
+    const sections = ['about', 'skills', 'experience', 'projects', 'certifications'];
+    
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY + 100;
+      const pageBottom = window.scrollY + window.innerHeight;
+      const docHeight = document.documentElement.scrollHeight;
+
+      // If near bottom of page, highlight certifications
+      if (pageBottom >= docHeight - 50) {
+        setActiveSection('certifications');
+        return;
+      }
+
+      for (const sectionId of sections) {
+        const element = document.getElementById(sectionId);
+        if (element) {
+          const { offsetTop, offsetHeight } = element;
+          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
+            setActiveSection(sectionId);
+            break;
+          }
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    handleScroll(); // Initial check
+
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
 
   return (
@@ -193,11 +224,11 @@ export default function Navbar() {
             <FaBars onClick={changeMenu} />
         </MobileIcon>
         <NavItems>
-            <NavLink href="#skills" >Skills</NavLink>
-            <NavLink href="#projects">Projects</NavLink>
-            {/* <NavLink to="#education">Education</NavLink> */}
-            <NavLink href="#posts">Posts</NavLink>
-            <NavLink href="#contact">Contact</NavLink>
+            <NavLink href="#about" active={activeSection === 'about'}>About</NavLink>
+            <NavLink href="#skills" active={activeSection === 'skills'}>Skills</NavLink>
+            <NavLink href="#experience" active={activeSection === 'experience'}>Experience</NavLink>
+            <NavLink href="#projects" active={activeSection === 'projects'}>Projects</NavLink>
+            <NavLink href="#certifications" active={activeSection === 'certifications'}>Certifications</NavLink>
         </NavItems>
         <ButtonContainer>
         <Link style={linkStyle}  to={Bio.github} target='_blank'><GithubButton>Github profile</GithubButton></Link>
@@ -206,20 +237,20 @@ export default function Navbar() {
       {
         open && ( 
         <MobileMenu open={open}>
-            <MobileLink to="#skills" onClick={()=>{setOpen(!open)}}>
+            <MobileLink href="#about" active={activeSection === 'about'} onClick={()=>{setOpen(!open)}}>
+                About
+            </MobileLink>
+            <MobileLink href="#skills" active={activeSection === 'skills'} onClick={()=>{setOpen(!open)}}>
                 Skills
             </MobileLink>
-            <MobileLink to="#projects" onClick={()=>{setOpen(!open)}}>
+            <MobileLink href="#experience" active={activeSection === 'experience'} onClick={()=>{setOpen(!open)}}>
+                Experience
+            </MobileLink>
+            <MobileLink href="#projects" active={activeSection === 'projects'} onClick={()=>{setOpen(!open)}}>
                 Projects
             </MobileLink>
-            <MobileLink to="#posts" onClick={()=>{setOpen(!open)}}>
-                Posts
-            </MobileLink>
-            {/* <MobileLink to="#education" onClick={()=>{setOpen(!open)}}>
-                Education
-            </MobileLink> */}
-            <MobileLink to="#contact" onClick={()=>{setOpen(!open)}}>
-                Contact
+            <MobileLink href="#certifications" active={activeSection === 'certifications'} onClick={()=>{setOpen(!open)}}>
+                Certifications
             </MobileLink>
             <Link style={linkStyle} to={Bio.github} target='_blank'><GithubButton style={{
                 padding: '10px 16px',
