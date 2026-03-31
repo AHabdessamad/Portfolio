@@ -2,7 +2,9 @@ import React from 'react'
 import styled from 'styled-components'
 import { useState } from 'react'
 import {projects} from '../data/constants'
-import { Link as LinkR, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+
+
 import { Fade } from 'react-awesome-reveal';
 import { FaGithub, FaGlobe } from 'react-icons/fa';
 
